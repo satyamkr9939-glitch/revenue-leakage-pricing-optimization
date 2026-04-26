@@ -6,7 +6,7 @@ This folder contains the **Power BI dashboard (.pbix)** and supporting screensho
 
 ## 📁 Files
 
-* **powerbi.pbix** → Main dashboard file
+
 * **screenshots/** → <img width="1311" height="728" alt="Screenshot 2026-04-26 115813" src="https://github.com/user-attachments/assets/e7cbb5df-d294-4b30-afcc-56288695d9bb" />
 
 
