@@ -1,28 +1,27 @@
-# 📌 Revenue-Leakage-Analysis-SQL-PowerBI
+# 📊 Revenue Leakage Analysis (SQL + Power BI)
 
-![Dashboard Overview](dashboard/screenshots/overview.png)
+![Dashboard Overview] <img width="1311" height="728" alt="Screenshot 2026-04-26 115813" src="https://github.com/user-attachments/assets/a2a8aa82-2f1b-43f3-a0c2-9208b9d20cdc" />
 
-🚀 **End-to-end SQL + Power BI project** analyzing revenue loss in a food delivery platform.
 
-💡 **Impact:** Identified **~10% revenue leakage**, primarily driven by **medium-priced orders** and **high-volume cities**.
-
----
-
-## 🔗 Links
-
-* 💻 **GitHub Repo:** https://github.com/satyamkr9939-glitch/Revenue-Leakage-Data-Quality-Analysis
-* 🔗 **LinkedIn:** https://www.linkedin.com/in/satyam-8b105032b
+🚀 Identified **~10% revenue leakage** in a food delivery platform using SQL & Power BI
+💡 Discovered **medium-priced orders** and **high-volume cities** as primary drivers of revenue loss
 
 ---
 
-## 🎯 Business Problem
+## 💣 Why This Matters
 
-Discount-led growth can hide profitability issues.
-This project answers:
+In discount-driven platforms, poor pricing strategies can silently reduce profitability.
+Even a **5–15% revenue leakage** can significantly impact business margins.
 
-* Where is revenue leaking?
-* What is driving the leakage?
-* Which segments and cities need optimization?
+👉 This project identifies **where revenue is leaking and why**, enabling data-driven pricing decisions.
+
+---
+
+## 🎯 Business Objective
+
+* Detect revenue leakage
+* Identify key drivers (city, price segment, restaurant)
+* Provide actionable recommendations
 
 ---
 
@@ -38,9 +37,10 @@ This project answers:
 
 ### 🌍 City-Level Leakage
 
-![City Analysis](dashboard/screenshots/city_analysis.png)
+![City Analysis] <img width="723" height="572" alt="image" src="https://github.com/user-attachments/assets/df1059ca-78da-45e6-8420-4397119c74fc" />
 
-* Top leakage cities:
+
+* Highest leakage in:
 
   * **Mumbai**
   * **Hyderabad**
@@ -50,118 +50,130 @@ This project answers:
 
 ---
 
-### 💰 Price Segment Driver
+### 💰 Price Segment Analysis
 
-![Price Segment](dashboard/screenshots/price_segment.png)
+![Price Segment] <img width="896" height="557" alt="image" src="https://github.com/user-attachments/assets/92c891b0-a969-4b45-a0c3-74a9e6e155b8" />
+
 
 * **Medium-priced orders contribute the highest leakage**
-  👉 Shows **misaligned discount strategy in mid-tier pricing**
+
+👉 Suggests **misaligned discount strategy in mid-tier pricing**
 
 ---
 
 ### 🏪 High-Risk Restaurants
 
-![Restaurants](dashboard/screenshots/restaurants.png)
+![Restaurants] <img width="312" height="268" alt="image" src="https://github.com/user-attachments/assets/2f2ec3f2-7c87-4bba-8940-673bc9b05616" />
 
-* Small group of restaurants drives majority of losses
-  👉 Demonstrates **Pareto effect (80/20 rule)**
 
----
+* A small group of restaurants drives the majority of revenue loss
 
-## ⚙️ Approach
-
-### 1. Data Cleaning (SQL)
-
-* Removed invalid ratings (`NEW`, `-`)
-* Standardized price formats
-* Handled missing values
-
-### 2. Revenue Modeling
-
-* Estimated expected revenue using reverse pricing logic
-* Defined:
-
-  * **Revenue Leakage = Expected – Actual**
-
-### 3. Power BI (DAX + Dashboard)
-
-* Built measures:
-
-  * Total Revenue
-  * Expected Revenue
-  * Revenue Leakage
-  * Leakage %
-* Designed interactive visuals for decision-making
+👉 Demonstrates **Pareto effect (80/20 rule)**
 
 ---
 
-## 📈 What Makes This Project Strong
+## 🧠 My Approach
 
-* Focus on **business impact**, not just queries
-* Uses **derived metrics (expected revenue model)**
-* Combines **SQL + DAX + visualization**
-* Clear **decision-oriented insights**
+1. Cleaned raw dataset (handled missing and invalid values)
+2. Standardized price and rating formats
+3. Modeled expected revenue using reverse pricing logic
+4. Calculated revenue leakage (Expected – Actual)
+5. Built interactive Power BI dashboard for insights
 
 ---
 
-## 🎯 Recommendations
+## ⚙️ Workflow
 
-* Optimize discounts (especially **mid-tier pricing**)
-* Monitor **top-loss restaurants**
-* Apply **city-specific pricing controls**
-* Improve **data validation systems**
+```
+Raw Data → SQL Cleaning → Analysis → Power BI Dashboard → Insights
+```
+
+---
+
+## 🧾 Key SQL Concepts Used
+
+* Common Table Expressions (CTEs)
+* Aggregations (SUM, AVG, COUNT)
+* Data cleaning techniques
+* Business metric calculations
+
+---
+
+## 📊 DAX Measures
+
+```DAX id="lqz4hb"
+Total Revenue = SUM('zomato_Dataset'[Prices])
+```
+
+```DAX id="2r8nqf"
+Expected Revenue =
+SUMX('zomato_Dataset', 'zomato_Dataset'[Prices] / 0.9)
+```
+
+```DAX id="w0lqj3"
+Revenue Leakage =
+[Expected Revenue] - [Total Revenue]
+```
+
+```DAX id="k5g1vd"
+Leakage % =
+DIVIDE([Revenue Leakage], [Expected Revenue])
+```
+
+---
+
+## 🎯 Business Recommendations
+
+* Optimize discount strategy (especially mid-tier pricing)
+* Monitor high-risk restaurants
+* Apply city-level pricing strategies
+* Improve data validation systems
 
 ---
 
 ## 🛠️ Tech Stack
 
-* **SQL** (Data Cleaning, Aggregations, CTEs)
-* **Power BI** (DAX, Dashboarding)
-* **Excel / CSV**
+* SQL
+* Power BI (DAX, Visualization)
+* Excel / CSV
 
 ---
 
 ## 📂 Project Structure
 
-```id="d1h8al"
+```
 revenue-leakage-pricing-optimization/
 │
 ├── data/
 ├── sql/
-│   ├── 01_data_cleaning.sql
-│   ├── 02_revenue_analysis.sql
-│   ├── 03_leakage_analysis.sql
-│
 ├── dashboard/
 │   ├── powerbi.pbix
 │   └── screenshots/
-│       ├── overview.png
-│       ├── city_analysis.png
-│       ├── price_segment.png
-│       ├── restaurants.png
-│
-└── README.md
+├── docs/
+├── README.md
 ```
 
 ---
 
-## 🚀 Skills Demonstrated
+## 🚀 What Makes This Project Strong
 
-* Data Cleaning & Validation
-* Business Analytics & Insight Generation
-* SQL (CTE, Aggregations)
-* DAX & Data Modeling
-* Dashboard Design & Storytelling
-
----
-
-## 💡 Note
-
-This project simulates a **real-world analytics scenario** focused on **pricing optimization and profitability improvement**.
+* Focuses on **business impact**, not just analysis
+* Uses **derived revenue modeling**
+* Combines SQL + DAX + visualization
+* Provides **actionable insights**
 
 ---
 
-## 🤝 Connect
+## 💡 One-Line Summary
+
+👉 Built a business-focused analytics solution to detect revenue leakage and support pricing optimization decisions.
+
+---
+
+## 🔗 Connect
 
 * LinkedIn: https://www.linkedin.com/in/satyam-8b105032b
 * GitHub: https://github.com/satyamkr9939-glitch
+
+---
+
