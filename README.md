@@ -1,4 +1,4 @@
-# 📌 Revenue Leakage & Pricing Optimization
+# 📌 Revenue-Leakage-Analysis-SQL-PowerBI
 
 ![Dashboard Overview](dashboard/screenshots/overview.png)
 
